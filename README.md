@@ -26,3 +26,7 @@ Programmet vil:
 ## Database
 
 Programmet bruker 'vlc_updates.db' for å lagre versjon og siste sjekk tidspunkt.
+
+## Brukte prompter
+
+"Firmaet kunst og arkitektur bruker programmet vlc ofte og trenger å vite når programmet blir oppdatert så de alltid kan bruke siste verjon. Vi skal nå bruke ai for å lage ett python program som sjekker om ett produkt har oppdateringer. Vi skal bruke sqlite og skal sjekke programmet vlc."
