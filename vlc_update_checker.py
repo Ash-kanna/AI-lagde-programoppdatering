@@ -1,17 +1,24 @@
 import sqlite3
 import requests
 from datetime import datetime
+from bs4 import BeautifulSoup
+import re
 
 DB_FILE = 'vlc_updates.db'
 PRODUCT = 'vlc'
-GITHUB_API_URL = 'https://api.github.com/repos/videolan/vlc/releases/latest'
+VLC_URL = 'https://www.videolan.org/vlc/'
 
 def get_latest_version():
     try:
-        response = requests.get(GITHUB_API_URL)
+        response = requests.get(VLC_URL)
         response.raise_for_status()
-        data = response.json()
-        return data['tag_name']
+        text = response.text
+        match = re.search(r'vlc-(\d+\.\d+\.\d+)', text)
+        if match:
+            return match.group(1)
+        else:
+            print("Kunne ikke finne versjon på siden.")
+            return None
     except Exception as e:
         print(f"Feil ved henting av siste versjon: {e}")
         return None
